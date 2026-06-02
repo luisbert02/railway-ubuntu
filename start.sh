@@ -4,6 +4,11 @@ set -e
 USERNAME="${USERNAME:-admin}"
 PASSWORD="${PASSWORD:-changeme123}"
 
-echo "PORT recibido de Railway: $PORT"
+echo "PORT: $PORT"
 
-exec /usr/local/bin/ttyd -p ${PORT} -c "${USERNAME}:${PASSWORD}" -W /bin/bash
+exec /usr/local/bin/ttyd \
+    -p ${PORT} \
+    -c "${USERNAME}:${PASSWORD}" \
+    -W \
+    -i \
+    /bin/bash
