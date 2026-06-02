@@ -31,8 +31,14 @@ cat > /etc/motd << EOF
 EOF
 
 # Iniciar ttyd con autenticación básica
-exec ttyd \
-    --port "$PORT" \
-    --credential "$USERNAME:$PASSWORD" \
-    --writable \
-    bash --login
+#!/bin/bash
+set -e
+
+USERNAME="${USERNAME:-admin}"
+PASSWORD="${PASSWORD:-changeme123}"
+PORT="${PORT:-8080}"
+
+echo "Ubuntu 24.04 LTS - Railway Terminal"
+echo "Usuario: $USERNAME | Puerto: $PORT"
+
+exec ttyd -p "$PORT" -c "$USERNAME:$PASSWORD" -W bash --login
