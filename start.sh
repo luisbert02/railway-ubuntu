@@ -3,8 +3,7 @@ set -e
 
 USERNAME="${USERNAME:-admin}"
 PASSWORD="${PASSWORD:-changeme123}"
-PORT="${PORT:-8080}"
 
-echo "Iniciando ttyd en puerto $PORT"
+echo "PORT recibido de Railway: $PORT"
 
-exec ttyd -p "$PORT" -c "$USERNAME:$PASSWORD" -W bash --login
+exec /usr/local/bin/ttyd -p ${PORT} -c "${USERNAME}:${PASSWORD}" -W /bin/bash
