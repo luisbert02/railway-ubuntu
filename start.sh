@@ -1,12 +1,10 @@
 #!/bin/bash
 set -e
 
-#!/bin/bash
-set -e
+echo "Iniciando wetty en puerto $PORT"
 
-USERNAME="${USERNAME:-admin}"
-PASSWORD="${PASSWORD:-changeme123}"
-
-echo "PORT: $PORT"
-
-exec /usr/local/bin/ttyd -p ${PORT} -c "${USERNAME}:${PASSWORD}" -W /bin/bash
+exec wetty \
+    --port ${PORT} \
+    --base / \
+    --ssh-host localhost \
+    --allow-iframe
