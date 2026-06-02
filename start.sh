@@ -35,5 +35,4 @@ exec ttyd \
     --port "$PORT" \
     --credential "$USERNAME:$PASSWORD" \
     --writable \
-    --title "Ubuntu Terminal - Railway" \
     bash --login
