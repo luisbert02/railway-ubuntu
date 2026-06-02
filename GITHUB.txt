@@ -1,0 +1,6 @@
+cd railway-ubuntu
+git init
+git add .
+git commit -m "init: Ubuntu 24.04 para Railway"
+git remote add origin https://github.com/luisbert02/railway-ubuntu.git
+git push -u origin main
