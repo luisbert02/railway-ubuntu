@@ -17,6 +17,6 @@ WORKDIR /root/workspace
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
-
+ENV PORT=8080
 ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["/start.sh"]
