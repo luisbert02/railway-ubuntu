@@ -20,8 +20,8 @@ server {
 }
 EOF
 
-# Iniciar ttyd en puerto interno 7681
-/usr/local/bin/ttyd -p 7681 -c "${USERNAME}:${PASSWORD}" -W /bin/bash &
+# Iniciar ttyd en puerto interno 8080
+/usr/local/bin/ttyd -p 8080 -c "${USERNAME}:${PASSWORD}" -W /bin/bash &
 
 # Iniciar nginx en el puerto de Railway
 exec nginx -g "daemon off;"
