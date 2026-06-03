@@ -5,7 +5,7 @@ USERNAME="${USERNAME:-admin}"
 PASSWORD="${PASSWORD:-changeme123}"
 PORT="${PORT:-8080}"
 
-# Configurar nginx como proxy WebSocket
+# Configurar nginx en el puerto de Railway
 cat > /etc/nginx/sites-enabled/default << EOF
 server {
     listen ${PORT};
@@ -20,8 +20,14 @@ server {
 }
 EOF
 
-# Iniciar ttyd en puerto interno 8080
-/usr/local/bin/ttyd -p 8080 -c "${USERNAME}:${PASSWORD}" -W /bin/bash &
+# Quitar configuracion default de nginx que ocupa otros puertos
+rm -f /etc/nginx/sites-enabled/default.bak
+nginx -t
 
-# Iniciar nginx en el puerto de Railway
+# Iniciar ttyd en puerto interno fijo 7681
+/usr/local/bin/ttyd -p 7681 -c "${USERNAME}:${PASSWORD}" -W /bin/bash &
+
+sleep 1
+
+# Nginx toma el puerto de Railway
 exec nginx -g "daemon off;"
